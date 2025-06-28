@@ -1,2 +1,4 @@
 Django
 selenium
+gunicorn
+fabric3
