@@ -9,13 +9,16 @@ import unittest
 from selenium.common import WebDriverException, NoSuchElementException
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.firefox.options import Options
 
 MAX_WAIT = 10
 
 
 class NewVisitorTest(StaticLiveServerTestCase):
     def setUp(self):
-        self.browser = webdriver.Firefox()
+        options = Options()
+        options.add_argument("--headless")
+        self.browser = webdriver.Firefox(options=options)
         staging_server = os.environ.get('STAGING_SERVER')
         if staging_server:
             self.live_server_url = 'http://' + staging_server
